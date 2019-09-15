@@ -1,0 +1,173 @@
+---
+title: "Lab 3"
+author: "Shawn Santo"
+date: "09/16/19"
+output: 
+  html_document:
+    css: lab3.css
+    toc: true
+    number_sections: false
+    toc_float: true
+    df_print: paged
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE, 
+                      warning = FALSE,
+                      comment = NA,
+                      fig.width=8, 
+                      fig.height=6)
+```
+
+## Introduction
+
+Today we will investigate a data set from 
+[http://www.gapminder.org](http://www.gapminder.org), 
+a site which contains a wealth of data and visualizations related to 
+health, wealth, population, etc. of countries of the world.
+
+The data is available in package `gapminder` as a tibble object named
+`gapminder`. Install the package in your console with 
+`install.packages("gapminder")` and load it along with other packages by
+
+```{r packages}
+library(gapminder)
+library(tidyverse)
+library(RColorBrewer)
+```
+
+```{r view-data}
+gapminder
+class(gapminder)
+```
+
+We'll create an object named `gapminder_df` that only has class `data.frame`.
+Hence, we remove class `tbl_df` and `tbl`.
+
+```{r class-change}
+gapminder_df <- gapminder
+attr(gapminder_df, which = "class") <- "data.frame"
+class(gapminder_df)
+```
+
+
+Object `gapminder` has six variables:
+
+- **country**: country of the world, factor
+- **continent**: continent of the world, factor
+- **year**: year, integer
+- **lifeExp**: median life expectancy, double
+- **pop**: population, integer
+- **gdpPercap**: GDP per capita, double
+
+To see the HTML file for Lab 3 
+visit http://rpubs.com/shawnsanto/sta523-fa19-lab3
+
+## Exercises
+
+### Data frame manipulations
+
+For exercises 1 - 5 perform the task using both `gapminder` and `gapminder_df`.
+Focus on the differences in results between the two data 
+frames to get a better understanding of the tibble object. 
+
+1. Extract the third row.
+
+2. Extract the third column.
+
+3. Extract the third column so the result is a data frame.
+
+4. Extract the first and last columns.
+
+5. Extract the last 20 rows without using the fact that you know there are
+   1704 rows of data.
+
+6. What years are in the data set? *Hint:* `unique`.
+
+7. How many countries since 1960 had a median life expectancy of at least 80?
+
+8. Create a new variable named `pop_scale` for `gapminder_df` that is defined
+   as `pop / 10000`.
+   
+9. What was the mean life expectancy for Europe in 1957? How about in 2007?
+
+10. Which country had the highest median life expectancy in 1957? How about in
+    2007?
+    
+### Plots {.tabset .tabset-fade .tabset-pills}
+
+Use object `gapminder` to recreate the plots using functions in package
+`ggplot2`. To see the plots you will need to 
+visit http://rpubs.com/shawnsanto/sta523-fa19-lab3
+
+#### Plot 1 { - .tabset .tabset-fade .tabset-pills}
+
+##### Plot {-}
+
+```{r}
+
+
+```
+
+##### Hints {-}
+
+Non-obvious plot features
+
+- `color = "blue", alpha = .2`
+- `base_size = 20`
+
+#### Plot 2 { - .tabset .tabset-fade .tabset-pills}
+
+##### Plot {-}
+
+```{r fig.height=12}
+
+
+
+```
+
+##### Hints {-}
+
+Non-obvious plot features
+
+- Filter `gapminder` for `Americas` and years 1957, 1982, 2007.
+- `show.legend = FALSE`
+
+#### Plot 3 { - .tabset .tabset-fade .tabset-pills}
+
+##### Plot {-}
+
+```{r fig.height=12, fig.width=10}
+
+
+
+```
+
+##### Hints {-}
+
+Non-obvious plot features
+
+- Filter `gapminder` so it does not contain `Oceania`
+- `colors = brewer.pal(9, "Reds")`
+
+#### Plot 4 { - .tabset .tabset-fade .tabset-pills}
+
+##### Plot {-}
+
+```{r echo=FALSE}
+
+
+
+```
+
+##### Hints {-}
+
+Non-obvious plot features
+
+- Filter `gapminder` so it does not contain `Oceania`
+- `alpha = .3`
+- Use a linear model fit on the entire data
+- Transfer `x` to a `log10` scale
