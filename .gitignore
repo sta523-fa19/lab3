@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-.html
-lab3-rpubs.Rmd
+*.html
+lab3-rpubs*
